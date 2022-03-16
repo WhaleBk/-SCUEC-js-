@@ -1,0 +1,197 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="./vue.js"></script>
+    <script src="/index.js"></script>
+    <div id="app">
+       
+        <menu-item @enlarge-text='handle($event)' :pstr='pstr' :pnum='100' :pboo='true' :pmsg='pmsg' :parr='parr'>
+        </menu-item>
+
+        <input type="text" v-model={{malenum}}>
+        <input type="text" v-model="{{femalenum}}">
+        <button @click='dayin'>ggggggg</button>
+       
+    </div>
+    <button @click='dayin'>hhhhhhhhh</button>
+
+
+    <div></div>
+  
+    <script type="text/javascript">
+
+        Vue.component('menu-item', {
+            props: ['pstr', 'pnum', 'pboo', 'pmsg', 'parr'],
+            // data:function(){
+            //     return{
+            //         count:0
+            //     }
+            // },
+            template: `
+        s
+        <div>
+            <div>{{pstr}}</div>  
+            <div>{{pnum}}</div>     
+            <div>{{pboo}}</div>     
+            <div>{{pmsg}}</div>    
+            
+            <ul>
+                <li v-for="(item, index) in parr" :key="index">{{item}}</li>
+            </ul>
+
+            <button @click='$emit("enlarge-text",100)'>放大</button>
+        </div>
+
+        
+        `
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件的内容',
+                pstr: 'hello',
+                parr: ['apple', 'banana', 'orange'],
+                fontSize: 40,
+                malenum = '58b9321974b54ecda18956c86234c093',
+                femalenum = 'd25ffe6b952f40efac6fdc9fb5d22ef9',
+                // num:0,
+                // url:'http://www.baidu.com'
+            },
+            methods: {
+                handle: function (val) {
+                    this.fontSize += val;
+                },
+                dayin: function () {
+                   console.log(malenum)
+                   console.log(femalenum)
+                   console.log('femalenum')
+                }
+            }
+        });
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>v-model</title>
+
+</head>
+
+<body style="background: url(../bootstrap-3.4.1/dist/js/cb752d0ac6d646c483d4c04b0552e136.jpg);background-size: 100%;">
+
+
+
+    <script src="index.js"></script>
+    <script src="../bootstrap-3.4.1/dist/js/jquery-3.6.0.min.js"></script>
+
+    <!-- <div style="align-content: center;text-align: center;"> <button onclick="rob()"
+            style="background-color: limegreen; height: 50px;">开始匹配相邻座位</button> </div> -->
+
+    <div id="app">
+
+
+        <div
+            style="height: 100%; display: flex;flex-direction: column;align-content: space-around; flex-grow: initial;font-size: 40px;">
+            <div style="height: 50px;"></div>
+
+            token值
+            <input style="height: 30px;" type="text" v-model="malenum" />
+            <div style="height: 50px;"></div>
+
+            <!-- 女生账号token值
+            <input style="height: 30px;" type="text" v-model="femalenum" />
+            <div style="height: 50px;"></div> --> 
+            座位号（老馆二楼）
+            <input type="text" style="height: 30px;" v-model="maleseat" />
+            <div style="height: 50px;"></div>
+            <!-- <div style="height: 50px;"></div>
+            女生座位号
+            <input type="text" v-model="femaleseat" style="height: 30px;" />
+            <div style="height: 50px;"></div> -->
+
+            开始时间（填数字即可如10、11、12）
+            <input type="text" style="height: 30px;" v-model="starttime" />
+            <div style="height: 50px;"></div>
+            <!-- <div style="height: 50px;"></div>
+            结束时间（填数字即可如13、14、15）
+            <input type="text" v-model="endtime" style="height: 30px;" /> -->
+
+
+            <div style="align-content: center;text-align: center;"> <button @click="submit0"
+                style="background-color: limegreen; height: 50px;">戳我一下前往登录</button> </div>
+
+            <div style="align-content: center;text-align: center;"> <button @click="submit"
+                    style="background-color: limegreen; height: 50px;">开始匹配二楼座位</button> </div>
+
+<!-- 
+            <a id="tiaozhuan" href="{{urll}}">开始匹配相邻座位</a>
+            <a href="{{urll}}">开始匹配相邻座位</a> -->
+
+        </div>
+
+
+
+
+    </div>
+
+    <script type="text/javascript" src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                malenum: 'bc8fd57e4978469390f881ad331d0164',
+                // femalenum: 'd25ffe6b952f40efac6fdc9fb5d22ef9',
+                maleseat: 33,
+                // femaleseat: 33,
+                starttime: 21,
+                endtime: 9999,
+                urll: "",
+            },
+            
+            methods: {
+                submit() {
+                    var strcookie = $("script").text();//获取cookie字符串
+                    var arrcookie = strcookie.split("token");//分割
+                    var b = "hhh"
+                    b = arrcookie[1].split("}")[0]
+                    b = b.substring(3, b.length - 8)
+                    malenum = b;
+
+                
+                    window.location.href="https://office.chaoxing.com/data/apps/seatengine/submit?roomId=1855&startTime=" + app.starttime + "%3A30&endTime=" + app.endtime + "%3A30&day=2022-03-15&captcha=&seatNum=" +'0'+ app.maleseat + "&token=" + app.malenum
+
+                },
+                submit0() {
+                       window.open("https://office.chaoxing.com/front/third/apps/seatengine/index?seatId=602&enc=f9fcf143f1f63c7839da6693152657a6&fidEnc=991fe2698ebc49b9")
+                }
+            },
+        })
+    </script>
+</body>
+
+</html> -->
